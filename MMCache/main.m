@@ -12,6 +12,9 @@
 #import "Cat.h"
 
 
+#define CACHE MMCache.sharedCache
+
+
 Dog *RandomDog(void) {
     Dog *dog = Dog.new;
     dog.age = arc4random_uniform(15);
@@ -32,35 +35,33 @@ Dog *RandomDog(void) {
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-
-        MMCache *sharedCache = MMCache.sharedCache;
-        sharedCache.storageType = MMCStorageTypeInMemory;
-        sharedCache.policyType = MMCPolicyTypeLRU;
-        sharedCache.capacity = 100;
+        CACHE.storageType = MMCStorageTypeInMemory;
+        CACHE.policyType = MMCPolicyTypeLRU;
+        CACHE.capacity = 50;
 
         for (NSInteger i = 0; i < 99; i++) {
-            [sharedCache saveObject:RandomDog()];
+            [CACHE saveObject:RandomDog()];
         }
 
-        NSArray <NSString *> *allIds = sharedCache.allIds;
+        NSArray <NSString *> *allIds = CACHE.allIds;
         for (NSInteger i = 0; i < 99; i++) {
             NSInteger index = arc4random_uniform((int)allIds.count);
-            [sharedCache objectForId:allIds[index]];
+            [CACHE objectForId:allIds[index]];
         }
 
         Dog *dog1 = [Dog dogWithName:@"billy" age:2 breed:@"Husky"];
-        [sharedCache saveObject:dog1];
+        [CACHE saveObject:dog1];
 
         Dog *dog2 = [Dog dogWithName:@"lucas" age:3 breed:@"Barbet"];
-        [sharedCache saveObject:dog2];
+        [CACHE saveObject:dog2];
 
-        sharedCache.policyType = MMCPolicyTypeLFU;
+        CACHE.policyType = MMCPolicyTypeLFU;
 
         Cat *cat1 = [Cat dogWithName:@"luna" age:1 breed:@"British Shorthair"];
-        [sharedCache saveObject:cat1];
+        [CACHE saveObject:cat1];
 
         Cat *cat2 = [Cat dogWithName:@"benny" age:5 breed:@"Burmese"];
-        [sharedCache saveObject:cat2];
+        [CACHE saveObject:cat2];
 
         NSLog(@"");
     }

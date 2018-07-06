@@ -101,22 +101,46 @@
 		351CED5A20F0091000118382 /* scr */ = {
 			isa = PBXGroup;
 			children = (
-				351CED7920F028F000118382 /* NSString+MD5.h */,
-				351CED7820F028F000118382 /* NSString+MD5.m */,
-				351CED5F20F00B5500118382 /* MMCStorageProtocol.h */,
-				351CED6B20F0187500118382 /* MMCPolicyProtocol.h */,
+				351CED7C20F02BC900118382 /* Utils */,
+				351CED7B20F02BBD00118382 /* Storage */,
+				351CED7D20F02BD500118382 /* Policy */,
 				351CED5B20F0094200118382 /* MMCContainer.h */,
 				351CED5C20F0094200118382 /* MMCContainer.m */,
-				351CED6220F00C7D00118382 /* MMCInMemoryStorage.h */,
-				351CED6320F00C7D00118382 /* MMCInMemoryStorage.m */,
-				351CED6520F0108900118382 /* MMCPolicyLRU.h */,
-				351CED6620F0108900118382 /* MMCPolicyLRU.m */,
-				351CED6820F0182D00118382 /* MMCPolicyLFU.h */,
-				351CED6920F0182D00118382 /* MMCPolicyLFU.m */,
 				351CED6C20F0194900118382 /* MMCache.h */,
 				351CED6D20F0194900118382 /* MMCache.m */,
 			);
 			path = scr;
+			sourceTree = "<group>";
+		};
+		351CED7B20F02BBD00118382 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				351CED5F20F00B5500118382 /* MMCStorageProtocol.h */,
+				351CED6220F00C7D00118382 /* MMCInMemoryStorage.h */,
+				351CED6320F00C7D00118382 /* MMCInMemoryStorage.m */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		351CED7C20F02BC900118382 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				351CED7920F028F000118382 /* NSString+MD5.h */,
+				351CED7820F028F000118382 /* NSString+MD5.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		351CED7D20F02BD500118382 /* Policy */ = {
+			isa = PBXGroup;
+			children = (
+				351CED6B20F0187500118382 /* MMCPolicyProtocol.h */,
+				351CED6520F0108900118382 /* MMCPolicyLRU.h */,
+				351CED6620F0108900118382 /* MMCPolicyLRU.m */,
+				351CED6820F0182D00118382 /* MMCPolicyLFU.h */,
+				351CED6920F0182D00118382 /* MMCPolicyLFU.m */,
+			);
+			path = Policy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
