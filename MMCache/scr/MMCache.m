@@ -9,6 +9,7 @@
 #import "MMCache.h"
 #import "MMCPolicyLFU.h"
 #import "MMCPolicyLRU.h"
+#import "MMCPolicyFIFO.h"
 #import "MMCInMemoryStorage.h"
 #import "NSString+MD5.h"
 
@@ -66,6 +67,10 @@
             _policy = MMCPolicyLFU.new;
             break;
         }
+        case MMCPolicyTypeFIFO: {
+            _policy = MMCPolicyFIFO.new;
+            break;
+        }
         default: {
             [NSException raise:@"MMCPolicyUndefined" format:@"cache policy type undefined"];
             break;
@@ -109,6 +114,11 @@
 
 - (NSInteger)size {
     return self.storage.count;
+}
+
+
+- (void)purify {
+    [self.storage purify];
 }
 
 @end

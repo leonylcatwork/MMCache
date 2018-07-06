@@ -18,7 +18,7 @@
 Dog *RandomDog(void) {
     Dog *dog = Dog.new;
     dog.age = arc4random_uniform(15);
-    NSString *pool = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    NSString *pool = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     NSMutableString *randomString = NSMutableString.string;
     NSInteger length = arc4random_uniform(10) + 1;
     for (NSInteger i = 0; i < length; i++) {
@@ -37,20 +37,22 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         CACHE.storageType = MMCStorageTypeInMemory;
         CACHE.policyType = MMCPolicyTypeLRU;
-        CACHE.capacity = 50;
+        CACHE.capacity = 10000;
 
-        for (NSInteger i = 0; i < 99; i++) {
+        for (NSInteger i = 0; i < 10000; i++) {
             [CACHE saveObject:RandomDog()];
         }
 
         NSArray <NSString *> *allIds = CACHE.allIds;
-        for (NSInteger i = 0; i < 99; i++) {
+        for (NSInteger i = 0; i < 1000; i++) {
             NSInteger index = arc4random_uniform((int)allIds.count);
             [CACHE objectForId:allIds[index]];
         }
 
         Dog *dog1 = [Dog dogWithName:@"billy" age:2 breed:@"Husky"];
         [CACHE saveObject:dog1];
+
+        CACHE.policyType = MMCPolicyTypeFIFO;
 
         Dog *dog2 = [Dog dogWithName:@"lucas" age:3 breed:@"Barbet"];
         [CACHE saveObject:dog2];
@@ -62,6 +64,10 @@ int main(int argc, const char * argv[]) {
 
         Cat *cat2 = [Cat dogWithName:@"benny" age:5 breed:@"Burmese"];
         [CACHE saveObject:cat2];
+
+        for (NSInteger i = 0; i < 100; i++) {
+            [CACHE saveObject:RandomDog()];
+        }
 
         NSLog(@"");
     }

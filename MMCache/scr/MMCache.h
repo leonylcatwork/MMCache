@@ -14,7 +14,8 @@
 
 typedef NS_ENUM(NSInteger, MMCPolicyType) {
     MMCPolicyTypeLRU,
-    MMCPolicyTypeLFU
+    MMCPolicyTypeLFU,
+    MMCPolicyTypeFIFO
 };
 
 
@@ -49,5 +50,6 @@ typedef NS_ENUM(NSInteger, MMCStorageType) {
 
 - (NSInteger)size;
 
+- (void)purify;
 
 @end

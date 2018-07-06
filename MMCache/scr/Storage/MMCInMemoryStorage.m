@@ -72,6 +72,7 @@
             container.accessTime = NSDate.date;
             [self.accessed removeObject:container.id];
             [self.accessed addObject:container.id];
+            container.accessCount++;
         }
         return container;
     }

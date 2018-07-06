@@ -16,9 +16,5 @@
 
 - (BOOL)saveObject:(MMCContainer *)object toStorage:(id<MMCStorageProtocol>)storage maxCapacity:(NSInteger)maxCapacity;
 
-
-- (void)purifyStorage:(id<MMCStorageProtocol>)storage;
-
-
 @end
 

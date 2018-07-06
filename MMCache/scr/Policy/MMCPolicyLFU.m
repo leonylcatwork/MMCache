@@ -16,19 +16,14 @@
 
 - (BOOL)saveObject:(MMCContainer *)object toStorage:(id<MMCStorageProtocol>)storage maxCapacity:(NSInteger)maxCapacity {
     if (maxCapacity > 0 && [storage count] >= maxCapacity) {
-        MMCContainer *lfu = [storage leastAccessed];
-        if (lfu.id) {
-            if ([storage removeObjectForId:lfu.id]) {
-                NSLog(@"<LFU> Cache is full, [%@ %@ accessed %ld] was removed", lfu.id, lfu.object, (long)lfu.accessCount);
+        MMCContainer *container = [storage leastAccessed];
+        if (container.id) {
+            if ([storage removeObjectForId:container.id]) {
+                NSLog(@"<LFU> FULL [%@ accessed %ld] was removed", container.object, (long)container.accessCount);
             }
         }
     }
     return [storage saveObject:object];
-}
-
-
-- (void)purifyStorage:(id<MMCStorageProtocol>)storage {
-    [storage purify];
 }
 
 
