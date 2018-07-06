@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		351CED5420F008EA00118382 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED5320F008EA00118382 /* main.m */; };
+		351CED5D20F0094200118382 /* MMCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED5C20F0094200118382 /* MMCContainer.m */; };
+		351CED6420F00C7D00118382 /* MMCInMemoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED6320F00C7D00118382 /* MMCInMemoryStorage.m */; };
+		351CED6720F0108900118382 /* MMCPolicyLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED6620F0108900118382 /* MMCPolicyLRU.m */; };
+		351CED6A20F0182D00118382 /* MMCPolicyLFU.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED6920F0182D00118382 /* MMCPolicyLFU.m */; };
+		351CED6E20F0194900118382 /* MMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED6D20F0194900118382 /* MMCache.m */; };
+		351CED7120F01D7000118382 /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED7020F01D7000118382 /* Dog.m */; };
+		351CED7420F01D7D00118382 /* Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED7320F01D7D00118382 /* Cat.m */; };
+		351CED7720F01D8900118382 /* Pet.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED7620F01D8900118382 /* Pet.m */; };
+		351CED7A20F028F000118382 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED7820F028F000118382 /* NSString+MD5.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +34,26 @@
 /* Begin PBXFileReference section */
 		351CED5020F008EA00118382 /* MMCache */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MMCache; sourceTree = BUILT_PRODUCTS_DIR; };
 		351CED5320F008EA00118382 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		351CED5B20F0094200118382 /* MMCContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCContainer.h; sourceTree = "<group>"; };
+		351CED5C20F0094200118382 /* MMCContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCContainer.m; sourceTree = "<group>"; };
+		351CED5F20F00B5500118382 /* MMCStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCStorageProtocol.h; sourceTree = "<group>"; };
+		351CED6220F00C7D00118382 /* MMCInMemoryStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCInMemoryStorage.h; sourceTree = "<group>"; };
+		351CED6320F00C7D00118382 /* MMCInMemoryStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCInMemoryStorage.m; sourceTree = "<group>"; };
+		351CED6520F0108900118382 /* MMCPolicyLRU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCPolicyLRU.h; sourceTree = "<group>"; };
+		351CED6620F0108900118382 /* MMCPolicyLRU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCPolicyLRU.m; sourceTree = "<group>"; };
+		351CED6820F0182D00118382 /* MMCPolicyLFU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCPolicyLFU.h; sourceTree = "<group>"; };
+		351CED6920F0182D00118382 /* MMCPolicyLFU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCPolicyLFU.m; sourceTree = "<group>"; };
+		351CED6B20F0187500118382 /* MMCPolicyProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCPolicyProtocol.h; sourceTree = "<group>"; };
+		351CED6C20F0194900118382 /* MMCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCache.h; sourceTree = "<group>"; };
+		351CED6D20F0194900118382 /* MMCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCache.m; sourceTree = "<group>"; };
+		351CED6F20F01D7000118382 /* Dog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
+		351CED7020F01D7000118382 /* Dog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
+		351CED7220F01D7D00118382 /* Cat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cat.h; sourceTree = "<group>"; };
+		351CED7320F01D7D00118382 /* Cat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cat.m; sourceTree = "<group>"; };
+		351CED7520F01D8900118382 /* Pet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pet.h; sourceTree = "<group>"; };
+		351CED7620F01D8900118382 /* Pet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Pet.m; sourceTree = "<group>"; };
+		351CED7820F028F000118382 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		351CED7920F028F000118382 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +86,37 @@
 		351CED5220F008EA00118382 /* MMCache */ = {
 			isa = PBXGroup;
 			children = (
+				351CED5A20F0091000118382 /* scr */,
 				351CED5320F008EA00118382 /* main.m */,
+				351CED6F20F01D7000118382 /* Dog.h */,
+				351CED7020F01D7000118382 /* Dog.m */,
+				351CED7220F01D7D00118382 /* Cat.h */,
+				351CED7320F01D7D00118382 /* Cat.m */,
+				351CED7520F01D8900118382 /* Pet.h */,
+				351CED7620F01D8900118382 /* Pet.m */,
 			);
 			path = MMCache;
+			sourceTree = "<group>";
+		};
+		351CED5A20F0091000118382 /* scr */ = {
+			isa = PBXGroup;
+			children = (
+				351CED7920F028F000118382 /* NSString+MD5.h */,
+				351CED7820F028F000118382 /* NSString+MD5.m */,
+				351CED5F20F00B5500118382 /* MMCStorageProtocol.h */,
+				351CED6B20F0187500118382 /* MMCPolicyProtocol.h */,
+				351CED5B20F0094200118382 /* MMCContainer.h */,
+				351CED5C20F0094200118382 /* MMCContainer.m */,
+				351CED6220F00C7D00118382 /* MMCInMemoryStorage.h */,
+				351CED6320F00C7D00118382 /* MMCInMemoryStorage.m */,
+				351CED6520F0108900118382 /* MMCPolicyLRU.h */,
+				351CED6620F0108900118382 /* MMCPolicyLRU.m */,
+				351CED6820F0182D00118382 /* MMCPolicyLFU.h */,
+				351CED6920F0182D00118382 /* MMCPolicyLFU.m */,
+				351CED6C20F0194900118382 /* MMCache.h */,
+				351CED6D20F0194900118382 /* MMCache.m */,
+			);
+			path = scr;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +175,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351CED7420F01D7D00118382 /* Cat.m in Sources */,
 				351CED5420F008EA00118382 /* main.m in Sources */,
+				351CED7A20F028F000118382 /* NSString+MD5.m in Sources */,
+				351CED6720F0108900118382 /* MMCPolicyLRU.m in Sources */,
+				351CED7720F01D8900118382 /* Pet.m in Sources */,
+				351CED6A20F0182D00118382 /* MMCPolicyLFU.m in Sources */,
+				351CED5D20F0094200118382 /* MMCContainer.m in Sources */,
+				351CED7120F01D7000118382 /* Dog.m in Sources */,
+				351CED6E20F0194900118382 /* MMCache.m in Sources */,
+				351CED6420F00C7D00118382 /* MMCInMemoryStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
