@@ -32,4 +32,6 @@ NSDictionary <NSString *, NSNumber *> *kids = @{@"Alex" : @5, @"Phil" : @2, @"Ma
 
 ### To do
 
-Persistent type of storage is not implemented yet. This class must conforms to protocol 'MMCStorable'.
+1. Persistent type of storage is not implemented yet. This class must conforms to protocol 'MMCStorable'.
+2. Dynamically setting capacity should trim cache size to desired value using given policy.
+3. Storage should provide more flexible query methods other than what is defined in MMCStorable.
