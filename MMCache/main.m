@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MMCache.h"
-#import "Dog.h"
 #import "Cat.h"
-
+#import "Dog+NSCoding.h"
 
 #define CACHE MMCache.sharedCache
 

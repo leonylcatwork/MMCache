@@ -12,7 +12,7 @@
 @implementation MMCContainer
 
 
-+ (MMCContainer *)addObject:(id)object level:(MMCLevel)level duration:(NSTimeInterval)duration {
++ (MMCContainer *)addObject:(id<NSCoding, NSObject>)object level:(MMCLevel)level duration:(NSTimeInterval)duration {
     if (!object) return nil;
     MMCContainer *container = MMCContainer.new;
     container.object        = object;
@@ -25,10 +25,15 @@
 }
 
 
-+ (MMCContainer * (^)(id object, MMCLevel level, NSTimeInterval duration))add {
++ (MMCContainer * (^)(id<NSCoding, NSObject>object, MMCLevel level, NSTimeInterval duration))add {
     return ^(id object, MMCLevel level, NSTimeInterval duration) {
         return [self addObject:object level:level duration:duration];
     };
+}
+
+
+- (NSData *)objectData {
+    return [NSKeyedArchiver archivedDataWithRootObject:self.object];
 }
 
 

@@ -18,6 +18,7 @@
 		351CED7720F01D8900118382 /* Pet.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED7620F01D8900118382 /* Pet.m */; };
 		351CED7A20F028F000118382 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED7820F028F000118382 /* NSString+MD5.m */; };
 		351CED8120F0313400118382 /* MMCPolicyFIFO.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED8020F0313400118382 /* MMCPolicyFIFO.m */; };
+		359CA4F920F0B8A5002B3FF2 /* Dog+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 359CA4F820F0B8A5002B3FF2 /* Dog+NSCoding.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,9 @@
 		351CED7920F028F000118382 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		351CED7F20F0313400118382 /* MMCPolicyFIFO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCPolicyFIFO.h; sourceTree = "<group>"; };
 		351CED8020F0313400118382 /* MMCPolicyFIFO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCPolicyFIFO.m; sourceTree = "<group>"; };
+		359CA4F720F0B8A5002B3FF2 /* Dog+NSCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dog+NSCoding.h"; sourceTree = "<group>"; };
+		359CA4F820F0B8A5002B3FF2 /* Dog+NSCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Dog+NSCoding.m"; sourceTree = "<group>"; };
+		359CA4FA20F0B95A002B3FF2 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,7 @@
 			children = (
 				351CED7920F028F000118382 /* NSString+MD5.h */,
 				351CED7820F028F000118382 /* NSString+MD5.m */,
+				359CA4FA20F0B95A002B3FF2 /* Macro.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -152,6 +157,8 @@
 				351CED7320F01D7D00118382 /* Cat.m */,
 				351CED7520F01D8900118382 /* Pet.h */,
 				351CED7620F01D8900118382 /* Pet.m */,
+				359CA4F720F0B8A5002B3FF2 /* Dog+NSCoding.h */,
+				359CA4F820F0B8A5002B3FF2 /* Dog+NSCoding.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -219,6 +226,7 @@
 				351CED7720F01D8900118382 /* Pet.m in Sources */,
 				351CED6A20F0182D00118382 /* MMCPolicyLFU.m in Sources */,
 				351CED8120F0313400118382 /* MMCPolicyFIFO.m in Sources */,
+				359CA4F920F0B8A5002B3FF2 /* Dog+NSCoding.m in Sources */,
 				351CED5D20F0094200118382 /* MMCContainer.m in Sources */,
 				351CED7120F01D7000118382 /* Dog.m in Sources */,
 				351CED6E20F0194900118382 /* MMCache.m in Sources */,

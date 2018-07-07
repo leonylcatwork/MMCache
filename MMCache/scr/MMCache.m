@@ -79,14 +79,14 @@
 }
 
 
-- (BOOL)saveObject:(id)object level:(MMCLevel)level {
+- (BOOL)saveObject:(id<NSCoding, NSObject>)object level:(MMCLevel)level {
     MMCContainer *container = MMCContainer.add(object, level, 100);
     container.id = [NSString stringWithFormat:@"%p", container].md5;
     return [self.policy saveObject:container toStorage:self.storage maxCapacity:self.capacity];
 }
 
 
-- (BOOL)saveObject:(id)object {
+- (BOOL)saveObject:(id<NSCoding, NSObject>)object {
     return [self saveObject:object level:MMCLevelDefault];
 }
 

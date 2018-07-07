@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, MMCLevel) {
 @interface MMCContainer : NSObject
 
 @property (nonatomic, copy  ) NSString *id;
-@property (nonatomic, strong) id object;
+@property (nonatomic, strong) id<NSCoding, NSObject> object;
 @property (nonatomic, strong) NSDate *addedTime;
 @property (nonatomic, strong) NSDate *accessTime;
 @property (nonatomic, assign) MMCLevel level;
@@ -27,9 +27,11 @@ typedef NS_ENUM(NSInteger, MMCLevel) {
 @property (nonatomic, assign) NSInteger accessCount;
 
 
-+ (MMCContainer *)addObject:(id)object level:(MMCLevel)level duration:(NSTimeInterval)duration;
++ (MMCContainer *)addObject:(id<NSCoding, NSObject>)object level:(MMCLevel)level duration:(NSTimeInterval)duration;
 
-+ (MMCContainer * (^)(id object, MMCLevel level, NSTimeInterval duration))add;
++ (MMCContainer * (^)(id<NSCoding, NSObject> object, MMCLevel level, NSTimeInterval duration))add;
+
+- (NSData *)objectData;
 
 
 @end

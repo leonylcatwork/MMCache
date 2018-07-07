@@ -36,9 +36,9 @@ typedef NS_ENUM(NSInteger, MMCStorageType) {
 
 + (MMCache *)cacheWithCapacity:(NSInteger)capacity policyType:(MMCPolicyType)policyType storageType:(MMCStorageType)storageType;
 
-- (BOOL)saveObject:(id)object level:(MMCLevel)level;
+- (BOOL)saveObject:(id<NSCoding, NSObject>)object level:(MMCLevel)level;
 
-- (BOOL)saveObject:(id)object;
+- (BOOL)saveObject:(id<NSCoding, NSObject>)object;
 
 - (id)objectForId:(NSString *)id;
 
