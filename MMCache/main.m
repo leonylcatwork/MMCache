@@ -37,6 +37,7 @@ int main(int argc, const char * argv[]) {
         CACHE.storageType = MMCStorageTypeInMemory;
         CACHE.policyType = MMCPolicyTypeLRU;
         CACHE.capacity = 10000;
+        CACHE.defaultDuration = 10 * 60 * 60;
 
         for (NSInteger i = 0; i < 10000; i++) {
             [CACHE saveObject:RandomDog()];

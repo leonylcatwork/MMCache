@@ -20,6 +20,9 @@
 
 - (BOOL)removeObjectForId:(NSString *)id;
 
+- (void)purify;
+
+// query
 - (NSInteger)count;
 
 - (MMCObject *)firstAdded;
@@ -33,8 +36,6 @@
 - (MMCObject *)mostAccessed;
 
 - (MMCObject *)leastRecentAccessed;
-
-- (void)purify;
 
 - (NSArray <NSString *> *)allIds;
 

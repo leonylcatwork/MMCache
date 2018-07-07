@@ -26,6 +26,15 @@
 @implementation MMCache
 
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _defaultDuration = 24 * 60 * 60; // 24 hrs
+    }
+    return self;
+}
+
+
 + (MMCache *)sharedCache {
     static dispatch_once_t onceToken;
     static MMCache *_sharedCache;
@@ -80,14 +89,22 @@
 }
 
 
-- (BOOL)saveObject:(id<NSObject, NSCoding>)object level:(MMCLevel)level {
-    MMCObject *container = MMCObject.add(object, level, 100);
+- (NSString *)saveObject:(id<NSObject, NSCoding>)object level:(MMCLevel)level duration:(NSTimeInterval)duration {
+    MMCObject *container = MMCObject.add(object, level, duration);
     container.id = [NSString stringWithFormat:@"%p", container].md5;
-    return [self.policy saveObject:container toStorage:self.storage maxCapacity:self.capacity];
+    if ([self.policy saveObject:container toStorage:self.storage maxCapacity:self.capacity]) {
+        return container.id;
+    }
+    return nil;
 }
 
 
-- (BOOL)saveObject:(id<NSObject, NSCoding>)object {
+- (NSString *)saveObject:(id<NSObject, NSCoding>)object level:(MMCLevel)level {
+    return [self saveObject:object level:level duration:self.defaultDuration];
+}
+
+
+- (NSString *)saveObject:(id<NSObject, NSCoding>)object {
     return [self saveObject:object level:MMCLevelDefault];
 }
 
@@ -99,7 +116,7 @@
 
 - (void)expireObjectForId:(NSString *)id {
     MMCObject *container = [self.storage objectForId:id];
-    container.duration = 0;
+    container.duration = -1;
 }
 
 

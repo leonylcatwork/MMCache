@@ -67,14 +67,17 @@
 - (MMCObject *)objectForId:(NSString *)id {
     if (!id) return nil;
     @synchronized(self) {
-        MMCObject *container = self.storage[id];
-        if (container) {
-            container.accessTime = NSDate.date;
-            [self.accessed removeObject:container.id];
-            [self.accessed addObject:container.id];
-            container.accessCount++;
+        MMCObject *object = self.storage[id];
+        if (object.duration < 0 || NSDate.date.timeIntervalSinceNow > object.duration) {
+            return nil;
         }
-        return container;
+        if (object) {
+            object.accessTime = NSDate.date;
+            [self.accessed removeObject:object.id];
+            [self.accessed addObject:object.id];
+            object.accessCount++;
+        }
+        return object;
     }
 }
 
@@ -112,57 +115,75 @@
 
 - (MMCObject *)leastAccessed {
     NSInteger min = INT_MAX;
-    MMCObject *minContainer;
-    for (MMCObject *container in self.storage.allValues) {
-        if (container.accessCount < min) {
-            minContainer = container;
-        } else if (container.accessCount == min) {
-            NSComparisonResult r = [container.addedTime compare:minContainer.addedTime];
+    MMCObject *minobject;
+    NSArray <MMCObject *> *objects = self.storage.allValues;
+    NSTimeInterval interval = NSDate.date.timeIntervalSinceNow;
+    for (MMCObject *object in objects) {
+        if (object.duration < 0 || interval > object.duration) {
+            if (object.id) self.storage[object.id] = nil;
+            continue;
+        }
+        if (object.accessCount < min) {
+            minobject = object;
+        } else if (object.accessCount == min) {
+            NSComparisonResult r = [object.addedTime compare:minobject.addedTime];
             if (r == NSOrderedAscending) {
-                minContainer = container;
-            } else if (r == NSOrderedSame && container.level < minContainer.level) {
-                minContainer = container;
+                minobject = object;
+            } else if (r == NSOrderedSame && object.level < minobject.level) {
+                minobject = object;
             }
         }
     }
-    return minContainer;
+    return minobject;
 }
 
 
 - (MMCObject *)mostAccessed {
     NSInteger max = 0;
-    MMCObject *minContainer;
-    for (MMCObject *container in self.storage.allValues) {
-        if (container.accessCount > max) {
-            minContainer = container;
-        } else if (container.accessCount == max) {
-            NSComparisonResult r = [container.addedTime compare:minContainer.addedTime];
+    MMCObject *minobject;
+    NSArray <MMCObject *> *objects = self.storage.allValues;
+    NSTimeInterval interval = NSDate.date.timeIntervalSinceNow;
+    for (MMCObject *object in objects) {
+        if (object.duration < 0 || interval > object.duration) {
+            if (object.id) self.storage[object.id] = nil;
+            continue;
+        }
+        if (object.accessCount > max) {
+            minobject = object;
+        } else if (object.accessCount == max) {
+            NSComparisonResult r = [object.addedTime compare:minobject.addedTime];
             if (r == NSOrderedDescending) {
-                minContainer = container;
-            } else if (r == NSOrderedSame && container.level < minContainer.level) {
-                minContainer = container;
+                minobject = object;
+            } else if (r == NSOrderedSame && object.level < minobject.level) {
+                minobject = object;
             }
         }
     }
-    return minContainer;
+    return minobject;
 }
 
 
 - (MMCObject *)leastRecentAccessed {
     MMCObject *lru;
-    for (MMCObject *container in self.storage.allValues) {
+    NSArray <MMCObject *> *objects = self.storage.allValues;
+    NSTimeInterval interval = NSDate.date.timeIntervalSinceNow;
+    for (MMCObject *object in objects) {
+        if (object.duration < 0 || interval > object.duration) {
+            if (object.id) self.storage[object.id] = nil;
+            continue;
+        }
         if (!lru) {
-            lru = container;
+            lru = object;
         } else {
-            NSComparisonResult r = [container.accessTime compare:lru.accessTime];
+            NSComparisonResult r = [object.accessTime compare:lru.accessTime];
             if (r == NSOrderedAscending) {
-                lru = container;
+                lru = object;
             } else if (r == NSOrderedSame) {
-                r = [container.addedTime compare:lru.addedTime];
+                r = [object.addedTime compare:lru.addedTime];
                 if (r == NSOrderedAscending) {
-                    lru = container;
-                } else if (r == NSOrderedSame && container.level < lru.level) {
-                    lru = container;
+                    lru = object;
+                } else if (r == NSOrderedSame && object.level < lru.level) {
+                    lru = object;
                 }
             }
         }
