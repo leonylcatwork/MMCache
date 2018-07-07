@@ -7,6 +7,7 @@
 //
 
 #import "MMCache.h"
+#import "MMCObject.h"
 #import "MMCPolicyLFU.h"
 #import "MMCPolicyLRU.h"
 #import "MMCPolicyFIFO.h"
@@ -16,7 +17,7 @@
 
 @interface MMCache ()
 
-@property (nonatomic, strong) id<MMCStorageProtocol> storage;
+@property (nonatomic, strong) id<MMCStorable> storage;
 @property (nonatomic, strong) id<MMCPolicyProtocol> policy;
 
 @end
@@ -79,14 +80,14 @@
 }
 
 
-- (BOOL)saveObject:(id<NSCoding, NSObject>)object level:(MMCLevel)level {
-    MMCContainer *container = MMCContainer.add(object, level, 100);
+- (BOOL)saveObject:(id<NSObject, NSCoding>)object level:(MMCLevel)level {
+    MMCObject *container = MMCObject.add(object, level, 100);
     container.id = [NSString stringWithFormat:@"%p", container].md5;
     return [self.policy saveObject:container toStorage:self.storage maxCapacity:self.capacity];
 }
 
 
-- (BOOL)saveObject:(id<NSCoding, NSObject>)object {
+- (BOOL)saveObject:(id<NSObject, NSCoding>)object {
     return [self saveObject:object level:MMCLevelDefault];
 }
 
@@ -97,7 +98,7 @@
 
 
 - (void)expireObjectForId:(NSString *)id {
-    MMCContainer *container = [self.storage objectForId:id];
+    MMCObject *container = [self.storage objectForId:id];
     container.duration = 0;
 }
 

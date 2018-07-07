@@ -7,16 +7,16 @@
 //
 
 #import "MMCPolicyFIFO.h"
-#import "MMCContainer.h"
-#import "MMCStorageProtocol.h"
+#import "MMCObject.h"
+#import "MMCStorable.h"
 
 
 @implementation MMCPolicyFIFO
 
 
-- (BOOL)saveObject:(MMCContainer *)object toStorage:(id<MMCStorageProtocol>)storage maxCapacity:(NSInteger)maxCapacity {
+- (BOOL)saveObject:(MMCObject *)object toStorage:(id<MMCStorable>)storage maxCapacity:(NSInteger)maxCapacity {
     if (maxCapacity > 0 && [storage count] >= maxCapacity) {
-        MMCContainer *container = [storage firstAdded];
+        MMCObject *container = [storage firstAdded];
         if (container.id) {
             if ([storage removeObjectForId:container.id]) {
                 NSLog(@"<FIFO> FULL [%@ added at %@] was removed", container.object, container.addedTime);

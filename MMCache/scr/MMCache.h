@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MMCPolicyProtocol.h"
-#import "MMCStorageProtocol.h"
-#import "MMCContainer.h"
+#import "MMCStorable.h"
+#import "MMCLevel.h"
 
 
 typedef NS_ENUM(NSInteger, MMCPolicyType) {
@@ -28,17 +28,28 @@ typedef NS_ENUM(NSInteger, MMCStorageType) {
 @interface MMCache : NSObject
 
 
-@property (nonatomic, assign) NSInteger capacity;
-@property (nonatomic, assign) MMCPolicyType policyType;
+/*
+ *  define max number of item in cache
+ */
+@property (nonatomic, assign) NSInteger      capacity;
+
+/*
+ *  cache policy: LRU, LFU, FIFO, etc.
+ */
+@property (nonatomic, assign) MMCPolicyType  policyType;
+
+/*
+ *  storage type: in memory or persistent
+ */
 @property (nonatomic, assign) MMCStorageType storageType;
 
 + (MMCache *)sharedCache;
 
 + (MMCache *)cacheWithCapacity:(NSInteger)capacity policyType:(MMCPolicyType)policyType storageType:(MMCStorageType)storageType;
 
-- (BOOL)saveObject:(id<NSCoding, NSObject>)object level:(MMCLevel)level;
+- (BOOL)saveObject:(id<NSObject, NSCoding>)object level:(MMCLevel)level;
 
-- (BOOL)saveObject:(id<NSCoding, NSObject>)object;
+- (BOOL)saveObject:(id<NSObject, NSCoding>)object;
 
 - (id)objectForId:(NSString *)id;
 

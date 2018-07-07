@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MMCStorageProtocol.h"
+#import "MMCStorable.h"
 
 
 @protocol MMCPolicyProtocol <NSObject>
 
 @required
 
-- (BOOL)saveObject:(MMCContainer *)object toStorage:(id<MMCStorageProtocol>)storage maxCapacity:(NSInteger)maxCapacity;
+- (BOOL)saveObject:(MMCObject *)object toStorage:(id<MMCStorable>)storage maxCapacity:(NSInteger)maxCapacity;
 
 @end
 

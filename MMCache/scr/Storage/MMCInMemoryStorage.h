@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MMCStorageProtocol.h"
+#import "MMCStorable.h"
 
 
-@interface MMCInMemoryStorage : NSObject <MMCStorageProtocol>
+@interface MMCInMemoryStorage : NSObject <MMCStorable>
 
 
 @end

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		351CED5420F008EA00118382 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED5320F008EA00118382 /* main.m */; };
-		351CED5D20F0094200118382 /* MMCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED5C20F0094200118382 /* MMCContainer.m */; };
+		351CED5D20F0094200118382 /* MMCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED5C20F0094200118382 /* MMCObject.m */; };
 		351CED6420F00C7D00118382 /* MMCInMemoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED6320F00C7D00118382 /* MMCInMemoryStorage.m */; };
 		351CED6720F0108900118382 /* MMCPolicyLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED6620F0108900118382 /* MMCPolicyLRU.m */; };
 		351CED6A20F0182D00118382 /* MMCPolicyLFU.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CED6920F0182D00118382 /* MMCPolicyLFU.m */; };
@@ -36,9 +36,9 @@
 /* Begin PBXFileReference section */
 		351CED5020F008EA00118382 /* MMCache */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MMCache; sourceTree = BUILT_PRODUCTS_DIR; };
 		351CED5320F008EA00118382 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		351CED5B20F0094200118382 /* MMCContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCContainer.h; sourceTree = "<group>"; };
-		351CED5C20F0094200118382 /* MMCContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCContainer.m; sourceTree = "<group>"; };
-		351CED5F20F00B5500118382 /* MMCStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCStorageProtocol.h; sourceTree = "<group>"; };
+		351CED5B20F0094200118382 /* MMCObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCObject.h; sourceTree = "<group>"; };
+		351CED5C20F0094200118382 /* MMCObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCObject.m; sourceTree = "<group>"; };
+		351CED5F20F00B5500118382 /* MMCStorable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCStorable.h; sourceTree = "<group>"; };
 		351CED6220F00C7D00118382 /* MMCInMemoryStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCInMemoryStorage.h; sourceTree = "<group>"; };
 		351CED6320F00C7D00118382 /* MMCInMemoryStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMCInMemoryStorage.m; sourceTree = "<group>"; };
 		351CED6520F0108900118382 /* MMCPolicyLRU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCPolicyLRU.h; sourceTree = "<group>"; };
@@ -61,6 +61,7 @@
 		359CA4F720F0B8A5002B3FF2 /* Dog+NSCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dog+NSCoding.h"; sourceTree = "<group>"; };
 		359CA4F820F0B8A5002B3FF2 /* Dog+NSCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Dog+NSCoding.m"; sourceTree = "<group>"; };
 		359CA4FA20F0B95A002B3FF2 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		359CA4FE20F0D423002B3FF2 /* MMCLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMCLevel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +107,8 @@
 				351CED7C20F02BC900118382 /* Utils */,
 				351CED7B20F02BBD00118382 /* Storage */,
 				351CED7D20F02BD500118382 /* Policy */,
-				351CED5B20F0094200118382 /* MMCContainer.h */,
-				351CED5C20F0094200118382 /* MMCContainer.m */,
+				359CA4FF20F0D492002B3FF2 /* Model */,
+				359CA4FE20F0D423002B3FF2 /* MMCLevel.h */,
 				351CED6C20F0194900118382 /* MMCache.h */,
 				351CED6D20F0194900118382 /* MMCache.m */,
 			);
@@ -117,7 +118,7 @@
 		351CED7B20F02BBD00118382 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				351CED5F20F00B5500118382 /* MMCStorageProtocol.h */,
+				351CED5F20F00B5500118382 /* MMCStorable.h */,
 				351CED6220F00C7D00118382 /* MMCInMemoryStorage.h */,
 				351CED6320F00C7D00118382 /* MMCInMemoryStorage.m */,
 			);
@@ -161,6 +162,15 @@
 				359CA4F820F0B8A5002B3FF2 /* Dog+NSCoding.m */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		359CA4FF20F0D492002B3FF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				351CED5B20F0094200118382 /* MMCObject.h */,
+				351CED5C20F0094200118382 /* MMCObject.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,7 +237,7 @@
 				351CED6A20F0182D00118382 /* MMCPolicyLFU.m in Sources */,
 				351CED8120F0313400118382 /* MMCPolicyFIFO.m in Sources */,
 				359CA4F920F0B8A5002B3FF2 /* Dog+NSCoding.m in Sources */,
-				351CED5D20F0094200118382 /* MMCContainer.m in Sources */,
+				351CED5D20F0094200118382 /* MMCObject.m in Sources */,
 				351CED7120F01D7000118382 /* Dog.m in Sources */,
 				351CED6E20F0194900118382 /* MMCache.m in Sources */,
 				351CED6420F00C7D00118382 /* MMCInMemoryStorage.m in Sources */,

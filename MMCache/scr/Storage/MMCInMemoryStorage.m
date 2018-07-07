@@ -7,12 +7,12 @@
 //
 
 #import "MMCInMemoryStorage.h"
-#import "MMCContainer.h"
+#import "MMCObject.h"
 
 
 @interface MMCInMemoryStorage ()
 
-@property (nonatomic, strong) NSMutableDictionary <NSString *, MMCContainer *> *storage;
+@property (nonatomic, strong) NSMutableDictionary <NSString *, MMCObject *> *storage;
 @property (nonatomic, strong) NSMutableOrderedSet <NSString *> *added;
 @property (nonatomic, strong) NSMutableOrderedSet <NSString *> *accessed;
 
@@ -22,7 +22,7 @@
 @implementation MMCInMemoryStorage
 
 
-- (NSMutableDictionary <NSString *, MMCContainer *> *)storage {
+- (NSMutableDictionary <NSString *, MMCObject *> *)storage {
     if (!_storage) _storage = NSMutableDictionary.dictionary;
     return _storage;
 }
@@ -43,7 +43,7 @@
 #pragma mark - MMCStorageProtocol
 
 
-- (BOOL)saveObject:(MMCContainer *)object {
+- (BOOL)saveObject:(MMCObject *)object {
     if (!object || !object.id) return NO;
     @synchronized(self) {
         self.storage[object.id] = object;
@@ -64,10 +64,10 @@
 }
 
 
-- (MMCContainer *)objectForId:(NSString *)id {
+- (MMCObject *)objectForId:(NSString *)id {
     if (!id) return nil;
     @synchronized(self) {
-        MMCContainer *container = self.storage[id];
+        MMCObject *container = self.storage[id];
         if (container) {
             container.accessTime = NSDate.date;
             [self.accessed removeObject:container.id];
@@ -86,7 +86,7 @@
 }
 
 
-- (MMCContainer *)firstAdded {
+- (MMCObject *)firstAdded {
     @synchronized(self) {
         NSString *id = self.added.firstObject;
         return self.storage[id];
@@ -94,7 +94,7 @@
 }
 
 
-- (MMCContainer *)lastAdded {
+- (MMCObject *)lastAdded {
     @synchronized(self) {
         NSString *id = self.added.lastObject;
         return self.storage[id];
@@ -102,7 +102,7 @@
 }
 
 
-- (MMCContainer *)lastAccessed {
+- (MMCObject *)lastAccessed {
     @synchronized(self) {
         NSString *id = self.accessed.lastObject;
         return self.storage[id];
@@ -110,10 +110,10 @@
 }
 
 
-- (MMCContainer *)leastAccessed {
+- (MMCObject *)leastAccessed {
     NSInteger min = INT_MAX;
-    MMCContainer *minContainer;
-    for (MMCContainer *container in self.storage.allValues) {
+    MMCObject *minContainer;
+    for (MMCObject *container in self.storage.allValues) {
         if (container.accessCount < min) {
             minContainer = container;
         } else if (container.accessCount == min) {
@@ -129,10 +129,10 @@
 }
 
 
-- (MMCContainer *)mostAccessed {
+- (MMCObject *)mostAccessed {
     NSInteger max = 0;
-    MMCContainer *minContainer;
-    for (MMCContainer *container in self.storage.allValues) {
+    MMCObject *minContainer;
+    for (MMCObject *container in self.storage.allValues) {
         if (container.accessCount > max) {
             minContainer = container;
         } else if (container.accessCount == max) {
@@ -148,9 +148,9 @@
 }
 
 
-- (MMCContainer *)leastRecentAccessed {
-    MMCContainer *lru;
-    for (MMCContainer *container in self.storage.allValues) {
+- (MMCObject *)leastRecentAccessed {
+    MMCObject *lru;
+    for (MMCObject *container in self.storage.allValues) {
         if (!lru) {
             lru = container;
         } else {
